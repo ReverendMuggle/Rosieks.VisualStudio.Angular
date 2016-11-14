@@ -28,6 +28,7 @@
 
             textView.Properties.GetOrCreateSingletonProperty(() => new ControllerGoToDefinition(textViewAdapter, textView, AngularPackage.DTE, this.StandardClassificationService, this.HierarchyProvider));
             textView.Properties.GetOrCreateSingletonProperty(() => new DirectiveGoToDefinition(textViewAdapter, textView, AngularPackage.DTE, this.HierarchyProvider));
+            textView.Properties.GetOrCreateSingletonProperty(() => new ComponentGoToDefinition(textViewAdapter, textView, AngularPackage.DTE, this.HierarchyProvider));
         }
     }
 }
