@@ -21,6 +21,9 @@
         [ImportMany]
         public IHierarchyElementsProvider<NgState>[] StateProviders { get; set; }
 
+        [ImportMany]
+        public IHierarchyElementsProvider<NgComponent>[] ComponentProviders { get; set; }
+
         public NgHierarchy Get(string path)
         {
             int index = path.LastIndexOf("app");
@@ -35,6 +38,7 @@
                 hierarchy.Directives = new Lazy<IReadOnlyList<NgDirective>>(() => GetDirectives(hierarchy));
                 hierarchy.Controllers = new Lazy<IReadOnlyList<NgController>>(() => GetControllers(hierarchy));
                 hierarchy.States = new Lazy<IReadOnlyList<NgState>>(() => GetStates(hierarchy));
+                hierarchy.Components = new Lazy<IReadOnlyList<NgComponent>>(() => GetComponents(hierarchy));
                 return hierarchy;
             }
             else
@@ -57,5 +61,10 @@
         {
             return this.DirectiveProviders.SelectMany(p => p.GetElements(hierarchy)).ToReadOnlyList();
         }
+        private IReadOnlyList<NgComponent> GetComponents(NgHierarchy hierarchy)
+        {
+            return this.ComponentProviders.SelectMany(p => p.GetElements(hierarchy)).ToReadOnlyList();
+        }
+
     }
 }
