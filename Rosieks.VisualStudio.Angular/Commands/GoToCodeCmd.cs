@@ -90,7 +90,14 @@
 
         private string GetCodePath(string path)
         {
-            var codePath = path.Contains(".directive.") ? path.Replace(".html", ".ts") : path.Replace(".html", ".controller.ts");
+            var codePath = path;
+            
+            if (path.Contains(".directive.") || path.Contains(".component.")) {
+                codePath = path.Replace(".html", ".ts");
+            } else {
+                codePath = path.Replace(".html", ".controller.ts");
+            }
+            
             if (File.Exists(codePath))
             {
                 return codePath;
