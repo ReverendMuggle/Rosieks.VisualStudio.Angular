@@ -15,6 +15,7 @@
                 Controllers = new Lazy<IReadOnlyList<NgController>>(() => new NgController[0]),
                 Directives = new Lazy<IReadOnlyList<NgDirective>>(() => new NgDirective[0]),
                 States = new Lazy<IReadOnlyList<NgState>>(() => new NgState[0]),
+                Components = new Lazy<IReadOnlyList<NgComponent>>(() => new NgComponent[0]),
             };
         }
 
@@ -29,5 +30,8 @@
         public Lazy<IReadOnlyList<NgDirective>> Directives { get; set; }
 
         public Lazy<IReadOnlyList<NgState>> States { get; set; }
+
+        public Lazy<IReadOnlyList<NgComponent>> Components { get; set; }
+
     }
 }
